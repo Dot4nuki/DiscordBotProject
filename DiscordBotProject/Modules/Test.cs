@@ -35,9 +35,9 @@ namespace DiscordBotProject.Modules
             public string Description { get; set; }
         }
 
-        [Command("test2")]
+        [Command("test2")]//Just for tests
         public async Task commandTest2()
-        {
+        { //fdkjngkdjsg
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithAuthor(Context.User);
             builder.WithTitle("Gumball Team Test");
@@ -169,7 +169,7 @@ namespace DiscordBotProject.Modules
             System.IO.File.WriteAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Tier3.json", json);
             await Context.Channel.SendMessageAsync("New Tier3 time set to: " + oDate.Day + "/" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(oDate.Month) + " " + oDate.Hour + ":" + oDate.Minute);
         }
-        [Command("T3")] // check T3
+        [Command("T3")] //check T3
         public async Task Tier3TimeCheck(string check)
         {
             if (check == "check")
@@ -251,7 +251,7 @@ namespace DiscordBotProject.Modules
         [Command("team")] //fail (no parameters)
         public async Task TeamFail()
         {
-            await Context.Channel.SendMessageAsync("Manage teams with this command! \n -Create a team using emojis: !team <:Adventurer:742741303254581258> <:Swordsman:742742127414476890> <:Little_May:742742508672647268> <:Potion:740652792103829597> <:Artifact:740655057837621308> (Description) \n -To view other teams created use: !team (TeamName) \n -To get all team names use: !team check");
+            await Context.Channel.SendMessageAsync("Manage teams with this command! \n -Create a team using: !team (TeamName) (MainGumball) (2ndGumball) (3rdGumball) (Potion) (Artifact) (Description) \n -To view other teams created use: !team (TeamName) \n -To get all team names use: !team check");
         }
     }
 }
