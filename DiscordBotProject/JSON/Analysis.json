@@ -1,0 +1,15 @@
+﻿[
+	{"Sector":"M01", "Analysis1":"Zerg Building Analysis", "Analysis2":"Giant Zerg Analysis", "Analysis3":""},
+	{"Sector":"M02", "Analysis1":"Ancient Dragon Language Analysis", "Analysis2":"Space Station Analysis", "Analysis3":""},
+	{"Sector":"M03", "Analysis1":"Ancient Magic Array analysis", "Analysis2":"Fossil analysis", "Analysis3":"Ancient Text analysis"},
+	{"Sector":"M04", "Analysis1":"Titan Language Analysis", "Analysis2":"", "Analysis3":""},
+	{"Sector":"M05", "Analysis1":"Zuge Language Analysis", "Analysis2":"Seal of Virri Analysis", "Analysis3":""},
+	{"Sector":"M06", "Analysis1":"Serum Manufacturing Analysis", "Analysis2":"Comunication Optimization Analysis", "Analysis3":"Analyze Language of Ruins"},
+	{"Sector":"M07", "Analysis1":"Plant Communication Analysis", "Analysis2":"Surface Exploration Analysis", "Analysis3":"Genetic Mixing Technology"},
+	{"Sector":"M08", "Analysis1":"Black Powder Analysis", "Analysis2":"Gene Technology Analysis", "Analysis3":"Future Technology Analysis"},
+	{"Sector":"M09", "Analysis1":"Hunting Trap Analysis", "Analysis2":"", "Analysis3":""},
+	{"Sector":"M10", "Analysis1":"Clone Technology Analysis", "Analysis2":"Space Technology Analysis", "Analysis3":""},
+	{"Sector":"M11", "Analysis1":"Refinery Analysis", "Analysis2":"Mech Building Analysis", "Analysis3":""},
+	{"Sector":"M12", "Analysis1":"Illusion Perception Analysis", "Analysis2":"Eternal Fire Analysis", "Analysis3":""},
+	{"Sector":"M13", "Analysis1":"Requiem Analysis", "Analysis2":"Conductor Analysis", "Analysis3":""},
+]
