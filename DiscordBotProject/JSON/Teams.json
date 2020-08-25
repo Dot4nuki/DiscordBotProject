@@ -1,1 +1,2 @@
-[{"Name":"TestTeam","Gumball1":"adventurer","Gumball2":"swordsman","Gumball3":"little_may","Potion":"saints_stare","Artifact":"harp_of_adventurer","Description":"this is a team description"}]
+[{"Name":"TestTeam","Gumball1":"adventurer","Gumball2":"swordsman","Gumball3":"little_may","Potion":"saints_stare","Artifact":"harp_of_adventurer","Description":"this is a team description"},
+{"Name":"TestName","Gumball1":"Adventurer","Gumball2":"little_may","Gumball3":"swordsman","Potion":"saints_stare","Artifact":"harp_of_adventurer","Description":"this is a test team"}]

@@ -37,7 +37,7 @@ namespace DiscordBotProject.Modules
 
         [Command("test2")]//Just for tests
         public async Task commandTest2()
-        { //fdkjngkdjsg
+        {
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithAuthor(Context.User);
             builder.WithTitle("Gumball Team Test");
@@ -55,7 +55,7 @@ namespace DiscordBotProject.Modules
         [Command("help")] //help command
         public async Task commandHelp()
         {
-            await Context.Channel.SendMessageAsync("Type one of these commands to see what they do! \n !igt \n !reset \n !analysis \n !boink \n !team \n !T3");
+            await Context.Channel.SendMessageAsync("Type one of these commands to see what they do! \n !igt \n !reset \n !analysis \n !boink \n !teamadd \n !teamview \n !T3");
         }
         [Command("igt")] //check in game time
         public async Task InGameTime()
@@ -190,14 +190,13 @@ namespace DiscordBotProject.Modules
         }
 
 
-        [Command("team")] //add team
+        [Command("teamadd")] //add team
         public async Task createTeam(string name, string gumball1, string gumball2, string gumball3, string potion, string artifact, string description)
         {
             // Read existing json data
             var jsonData = System.IO.File.ReadAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Teams.json");
             // De-serialize to object or create new list
-            var teamList = JsonConvert.DeserializeObject<List<TeamsJson>>(jsonData)
-                                  ?? new List<TeamsJson>();
+            var teamList = JsonConvert.DeserializeObject<List<TeamsJson>>(jsonData)?? new List<TeamsJson>();
 
             // Add team
             teamList.Add(new TeamsJson()
@@ -216,10 +215,15 @@ namespace DiscordBotProject.Modules
             System.IO.File.WriteAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Teams.json", jsonData);
             await Context.Channel.SendMessageAsync("The team has been added successfully!");
         }
-        [Command("team")] //view team names & check team
-        public async Task viewAndCheckTeams(string check)
+        [Command("teamadd")] //fail (no parameters)
+        public async Task TeamFail()
         {
-            if (check == "check")
+            await Context.Channel.SendMessageAsync("To create your team use: !teamadd (TeamName) (MainGumball) (2ndGumball) (3rdGumball) (Potion) (Artifact) (Description)");
+        }
+        [Command("teamview")] //check a team by name
+        public async Task viewTeams(string teamname)
+        {
+            if (teamname.Equals("check",StringComparison.OrdinalIgnoreCase))
             {
                 string json = System.IO.File.ReadAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Teams.json");
                 var jsonTeams = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TeamsJson>>(json);
@@ -233,14 +237,14 @@ namespace DiscordBotProject.Modules
             {
                 string json = System.IO.File.ReadAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Teams.json"); //search in json file
                 var jsonTeams = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TeamsJson>>(json);
-                var selectTeam = from t in jsonTeams where t.Name == check select t;
+                var selectTeam = from t in jsonTeams where t.Name.Equals(teamname,StringComparison.OrdinalIgnoreCase) select t;
 
                 var test = Context.Guild.Emotes; //search emojis
-                var gumball1 = from t in test where t.Name == selectTeam.First().Gumball1 select t;
-                var gumball2 = from t in test where t.Name == selectTeam.First().Gumball2 select t;
-                var gumball3 = from t in test where t.Name == selectTeam.First().Gumball3 select t;
-                var potion = from t in test where t.Name == selectTeam.First().Potion select t;
-                var artifact = from t in test where t.Name == selectTeam.First().Artifact select t;
+                var gumball1 = from t in test where t.Name.Equals(selectTeam.First().Gumball1,StringComparison.OrdinalIgnoreCase) select t;
+                var gumball2 = from t in test where t.Name.Equals(selectTeam.First().Gumball2,StringComparison.OrdinalIgnoreCase) select t;
+                var gumball3 = from t in test where t.Name.Equals(selectTeam.First().Gumball3,StringComparison.OrdinalIgnoreCase) select t;
+                var potion = from t in test where t.Name.Equals(selectTeam.First().Potion,StringComparison.OrdinalIgnoreCase) select t;
+                var artifact = from t in test where t.Name.Equals(selectTeam.First().Artifact,StringComparison.OrdinalIgnoreCase) select t;
 
                 await Context.Channel.SendMessageAsync("**" + selectTeam.First().Name + "**");
                 await Context.Channel.SendMessageAsync(gumball1.First() + "\t\t" + gumball2.First() + "\t\t" + gumball3.First());
@@ -248,10 +252,26 @@ namespace DiscordBotProject.Modules
                 await Context.Channel.SendMessageAsync("**\n Description: **" + selectTeam.First().Description);
             }
         }
-        [Command("team")] //fail (no parameters)
-        public async Task TeamFail()
+        [Command("teamview")] //check all team names (no parameters)
+        public async Task checkTeams()
         {
-            await Context.Channel.SendMessageAsync("Manage teams with this command! \n -Create a team using: !team (TeamName) (MainGumball) (2ndGumball) (3rdGumball) (Potion) (Artifact) (Description) \n -To view other teams created use: !team (TeamName) \n -To get all team names use: !team check");
+            string json = System.IO.File.ReadAllText(@"C:\Users\Dot4nuki\source\repos\DiscordBotProject\DiscordBotProject\JSON\Teams.json");
+            var jsonTeams = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TeamsJson>>(json);
+            foreach (var item in jsonTeams)
+            {
+                teams += item.Name + "; ";
+            }
+            await Context.Channel.SendMessageAsync("These are the team names: " + teams + "\n to see one of these teams just use: !teamview (teamname)");
+        }
+        [Command("teamdelete")] // delete teams (to be implemented)
+        public async Task deleteTeam(string teamName)
+        {
+            await Context.Channel.SendMessageAsync("s");
+        }
+        [Command("teamdelete")] // fail (no parameters)
+        public async Task deleteTeamfail()
+        {
+            await Context.Channel.SendMessageAsync("To delete a team use: !teamdelete (teamname) \n this is an ireversible action, carefull!");
         }
     }
 }
